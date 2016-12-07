@@ -105,6 +105,9 @@ public class Lexer {
                 }
                 s = s + peek;
                 readch();
+                if (!Character.isDigit(peek)) {
+                    return new Word(-1, "error!");
+                }
                 while (Character.isDigit(peek)) {
                     s = s + peek;
                     readch();
