@@ -99,10 +99,16 @@ public class Lexer {
 
                 String s = String.valueOf(temp) + String.valueOf(x) + "e";
                 readch();
-//                if (!(peek != '+' || peek != '-' || Character.isDigit(peek))) {
-//                    System.out.printf("error!");
-//                }
-//                s = s + peek;
+                if (!(peek == '+' || peek == '-' || Character.isDigit(peek))) {
+                    readch();
+                    return new Word(-1, "error");
+                }
+                s = s + peek;
+                readch();
+                while (Character.isDigit(peek)) {
+                    s = s + peek;
+                    readch();
+                }
                 return new Word(Tag.NUM, s);
 
 
